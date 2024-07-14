@@ -3,79 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotation Evaluation Form</title>
+    <title>Test CORS</title>
 </head>
 <body>
-    <h1>Quotation Evaluation Form</h1>
-    <form id="quotationForm">
-        <h2>General Information</h2>
-        <label>Negotiation Number: <input type="text" name="negotiationNumber" required></label><br>
-        <label>Quotation Name: <input type="text" name="quotationName" required></label><br>
-        <label>Department: <input type="text" name="department" required></label><br>
-
-        <h2>Evaluation Committee</h2>
-        <label>Name: <input type="text" name="evalName" required></label><br>
-        <label>Role: <input type="text" name="evalRole" required></label><br>
-        <label>Department: <input type="text" name="evalDepartment" required></label><br>
-
-        <h2>Opening Committee</h2>
-        <label>Name: <input type="text" name="openName" required></label><br>
-        <label>Role: <input type="text" name="openRole" required></label><br>
-        <label>Department: <input type="text" name="openDepartment" required></label><br>
-
-        <h2>Preliminary Requirements</h2>
-        <label><input type="checkbox" name="requirements" value="Valid Tax Compliance Certificate"> Copy of Valid Tax Compliance Certificates</label><br>
-        <label><input type="checkbox" name="requirements" value="Registration/Incorporation Certificate"> Copy Of Registration / Incorporation Certificates</label><br>
-        <label><input type="checkbox" name="requirements" value="Business Questionnaire"> Business Questionnaire</label><br>
-        <!-- Add more checkboxes as required -->
-
-        <h2>Bidders</h2>
-        <label>Company Name: <input type="text" name="companyName" required></label><br>
-        <label>Address: <input type="text" name="address" required></label><br>
-        <label>Quotation Sum: <input type="number" name="quotationSum" required></label><br>
-        <label>Response in IFMIS: 
-            <select name="responseIFMIS" required>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-        </label><br>
-        <button type="submit">Submit</button>
-    </form>
+    <button id="testButton">Test CORS</button>
 
     <script>
-        document.getElementById('quotationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(event.target);
-            var jsonData = {};
-            formData.forEach((value, key) => {
-                if (!jsonData[key]) {
-                    jsonData[key] = value;
-                } else {
-                    if (!Array.isArray(jsonData[key])) {
-                        jsonData[key] = [jsonData[key]];
-                    }
-                    jsonData[key].push(value);
-                }
-            });
-
-            fetch('https://script.google.com/macros/s/AKfycbz6cFeLXNzwKVnHzn4bCiPCOqLbPcUP3SbfgktZfisQ8NPrk4lz9j0YCXFsW4M2cDgM/exec', {  // Replace with your Google Apps Script URL
-                method: 'POST',
-                body: JSON.stringify(jsonData),
+        document.getElementById('testButton').addEventListener('click', function() {
+            fetch('https://script.google.com/macros/s/AKfycbwLk7w3YhAcYooat_iFxrM0nRLxKakopxX1TmdGsolaoRZweKo0Lzd_J5BWwkH776Kd/exec', {  // Replace with your Google Apps Script URL
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
-                if (data.status === 'success') {
-                    alert('Form submitted successfully!');
-                } else {
-                    alert('Error: ' + data.message);
-                }
+                console.log('Response:', data);
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Form submission failed.');
             });
         });
     </script>
