@@ -3,27 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test CORS</title>
+    <title>Bidsync Trading Signals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: #fff;
+            padding: 15px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .signals-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .signals-table th, .signals-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        .buy {
+            background-color: green;
+            color: white;
+        }
+        .sell {
+            background-color: red;
+            color: white;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
-    <button id="testButton">Test CORS</button>
+    <header>
+        <h1>Bidsync Trading Signals</h1>
+        <p>Your source for live Deriv trading signals</p>
+    </header>
 
-    <script>
-        document.getElementById('testButton').addEventListener('click', function() {
-            fetch('https://script.google.com/macros/s/AKfycbzcwz7sgyz44iup0qoe5dl0zvFEMLhZgGt4aTKKNYOuJ5sb6kSFYr4Zw_OI2C6wb6jO/exec', {  // Replace with your Google Apps Script URL
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log('Response:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#signals">Signals</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <section id="signals">
+            <h2>Live Trading Signals</h2>
+            <table class="signals-table">
+                <thead>
+                    <tr>
+                        <th>Signal Type</th>
+                        <th>Pair</th>
+                        <th>Entry Price</th>
+                        <th>Stop Loss</th>
+                        <th>Take Profit</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="buy">BUY</td>
+                        <td>EUR/USD</td>
+                        <td>1.1150</td>
+                        <td>1.1100</td>
+                        <td>1.1200</td>
+                        <td>10:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td class="sell">SELL</td>
+                        <td>GBP/JPY</td>
+                        <td>150.50</td>
+                        <td>150.00</td>
+                        <td>151.00</td>
+                        <td>10:05 AM</td>
+                    </tr>
+                    <!-- Add more rows for signals here -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>At Bidsync, we provide real-time trading signals for Deriv users. Our signals are based on expert analysis to help you maximize your trading success.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:info@bidsync.com">info@bidsync.com</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bidsync Trading Signals. All rights reserved.</p>
+    </footer>
 </body>
 </html>
